@@ -542,6 +542,28 @@ nav {
   width: 100%; aspect-ratio: 16/10; overflow: hidden;
   background: rgba(255,255,255,0.02);
 }
+
+/* ===================== SERVICES ===================== */
+#services { background: var(--bg-primary); }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 20px; }
+.service-card {
+  background: var(--bg-glass); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md); padding: 28px;
+  opacity: 0; transform: translateY(24px);
+  transition: all 0.5s var(--ease-out);
+}
+.service-card.in-view { opacity:1; transform:translateY(0); }
+.service-card:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
+.service-card h4 {
+  font-size: 15px; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 10px;
+}
+.service-card h4 .dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  background: var(--amber); display: inline-block;
+  box-shadow: 0 0 8px var(--amber-glow);
+}
+.service-card p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.7; }
 .cert-thumb img {
   width: 100%; height: 100%; object-fit: cover;
   transition: transform 0.8s var(--ease-out);
@@ -608,7 +630,11 @@ nav {
   transform: translateY(-2px);
   box-shadow: 0 8px 32px rgba(232,179,90,0.3);
 }
-.form-note { font-size: 12.5px; color: var(--text-muted); margin-top: 12px; }
+.form-note { font-size: 12.5px; color: var(--text-muted); margin-top: 12px; transition: color 0.3s ease; }
+.form-note.form-note-success { color: #7bc088; }
+.form-note.form-note-error { color: #e07a6a; }
+.send-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.hp-field { position: absolute; left: -9999px; top: -9999px; opacity: 0; height: 0; width: 0; overflow: hidden; }
 
 .contact-info {
   background: var(--bg-glass); border: 1px solid var(--border-subtle);
@@ -674,6 +700,7 @@ footer .footer-socials .social-icon { animation: none; opacity: 1; }
       <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#services">Services</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -1124,6 +1151,69 @@ footer .footer-socials .social-icon { animation: none; opacity: 1; }
   </div>
 </section>
 
+<!-- ===================== SERVICES ===================== -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="eyebrow reveal">What I offer</div>
+      <h2 class="section-title reveal">Services</h2>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <h4><span class="dot"></span>Data Visualization</h4>
+        <p>Clear, interactive, insightful dashboards that simplify complex datasets for better decision-making.</p>
+      </div>
+
+      <div class="service-card">
+        <h4><span class="dot"></span>Database Management</h4>
+        <p>Design, manage, and optimize databases for secure, efficient, and scalable data storage.</p>
+      </div>
+
+      <div class="service-card">
+        <h4><span class="dot"></span>Data Engineering</h4>
+        <p>Build reliable pipelines to collect, process, and structure raw data for analytics and business use.</p>
+      </div>
+
+      <div class="service-card">
+        <h4><span class="dot"></span>Predictive Analysis</h4>
+        <p>Leverage statistical models and machine learning to forecast trends and support data-driven strategy.</p>
+      </div>
+
+      <div class="service-card">
+        <h4><span class="dot"></span>Big Data Processing</h4>
+        <p>Handle large-scale datasets with modern tools and frameworks to extract insights efficiently.</p>
+      </div>
+
+      <div class="service-card">
+        <h4><span class="dot"></span>Cloud Data Solutions</h4>
+        <p>Develop and deploy scalable data systems using Azure, GCP, and AWS cloud services.</p>
+      </div>
+
+      <div class="service-card">
+        <h4><span class="dot"></span>Business Intelligence Consulting</h4>
+        <p>BI strategy, reporting solutions, and decision-support systems tailored to business needs.</p>
+      </div>
+
+      <div class="service-card">
+        <h4><span class="dot"></span>Custom Analytics Solutions</h4>
+        <p>Tailored analytics tools and models designed to address unique business challenges.</p>
+      </div>
+
+      <div class="service-card">
+        <h4><span class="dot"></span>Data Security &amp; Governance</h4>
+        <p>Ensure data privacy, compliance, and secure handling of sensitive information.</p>
+      </div>
+
+      <div class="service-card">
+        <h4><span class="dot"></span>Data Migration</h4>
+        <p>Seamlessly migrate and integrate data across platforms without data loss.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ===================== CONTACT ===================== -->
 <section id="contact">
   <div class="wrap">
@@ -1153,8 +1243,12 @@ footer .footer-socials .social-icon { animation: none; opacity: 1; }
           <label for="fMessage">Message</label>
           <div class="underline"></div>
         </div>
+        <div class="hp-field" aria-hidden="true">
+          <label for="fHoney">Leave this field empty</label>
+          <input type="text" id="fHoney" name="_honey" tabindex="-1" autocomplete="off">
+        </div>
         <button type="submit" class="send-btn">Send Message</button>
-        <div class="form-note">Opens your email client, addressed to bhawish.developer@gmail.com</div>
+        <div class="form-note" id="formNote">Sends directly to bhawish.developer@gmail.com</div>
       </form>
 
       <div class="contact-info">
@@ -1284,7 +1378,7 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 document.querySelectorAll(
-  '.reveal, .reveal-left, .reveal-right, .about-photo-wrap, .mv-card, .chip-link, .exp-card, .edu-card, .proj-card, .skill-card, .cert-card, .contact-form, .contact-info'
+  '.reveal, .reveal-left, .reveal-right, .about-photo-wrap, .mv-card, .chip-link, .exp-card, .edu-card, .proj-card, .skill-card, .cert-card, .service-card, .contact-form, .contact-info'
 ).forEach(el => observer.observe(el));
 
 // staggered delays
@@ -1335,12 +1429,59 @@ window.addEventListener('scroll', () => {
 // ===================== CONTACT FORM =====================
 document.getElementById('contactForm').addEventListener('submit', function (e) {
   e.preventDefault();
-  const name = document.getElementById('fName').value;
-  const email = document.getElementById('fEmail').value;
-  const subject = document.getElementById('fSubject').value;
-  const message = document.getElementById('fMessage').value;
-  const body = `From: ${name} (${email})%0D%0A%0D%0A${encodeURIComponent(message)}`;
-  window.location.href = `mailto:bhawish.developer@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+  const form = this;
+  const btn = form.querySelector('.send-btn');
+  const note = document.getElementById('formNote');
+  const name = document.getElementById('fName').value.trim();
+  const email = document.getElementById('fEmail').value.trim();
+  const subject = document.getElementById('fSubject').value.trim();
+  const message = document.getElementById('fMessage').value.trim();
+  const honey = document.getElementById('fHoney').value;
+
+  // Silently drop likely-bot submissions (honeypot field got filled in)
+  if (honey) {
+    form.reset();
+    return;
+  }
+
+  const originalBtnText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  note.textContent = '';
+  note.classList.remove('form-note-success', 'form-note-error');
+
+  fetch('https://formsubmit.co/ajax/bhawish.developer@gmail.com', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      subject: subject,
+      message: message,
+      _subject: `Portfolio contact: ${subject}`,
+      _template: 'table',
+      _captcha: 'false'
+    })
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error('Request failed');
+      return res.json();
+    })
+    .then(() => {
+      btn.disabled = false;
+      btn.textContent = originalBtnText;
+      note.textContent = "Thanks! Your message has been sent — I'll get back to you soon.";
+      note.classList.add('form-note-success');
+      form.reset();
+    })
+    .catch(() => {
+      btn.disabled = false;
+      btn.textContent = originalBtnText;
+      note.textContent = 'Something went wrong sending that — opening your email client instead.';
+      note.classList.add('form-note-error');
+      const body = `From: ${name} (${email})%0D%0A%0D%0A${encodeURIComponent(message)}`;
+      window.location.href = `mailto:bhawish.developer@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+    });
 });
 </script>
 
