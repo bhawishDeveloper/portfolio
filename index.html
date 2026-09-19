@@ -265,6 +265,9 @@ body.has-custom-cursor, body.has-custom-cursor a, body.has-custom-cursor button{
 .bar-track{height:4px;background:rgba(255,255,255,0.08);border-radius:6px;overflow:hidden;}
 .bar-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--mint));width:0%;border-radius:6px;}
 
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.skill-tag{padding:6px 13px;border-radius:100px;font-size:12px;font-weight:500;color:var(--mint);background:rgba(100,255,218,0.06);border:1px solid rgba(100,255,218,0.22);transition:background .25s ease,border-color .25s ease,transform .25s ease;}
+.skill-tag:hover{background:rgba(100,255,218,0.14);border-color:var(--mint);transform:translateY(-2px);}
 /* ===== CERTIFICATIONS ===== */
 .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
 .cert-card{background:var(--bg-panel);border:1px solid rgba(255,255,255,0.07);border-radius:12px;overflow:hidden;transition:transform .25s ease, border-color .25s ease;}
@@ -658,6 +661,14 @@ footer{padding:36px 0;text-align:center;color:var(--text-soft);font-size:12.5px;
         <div class="skill-row"><div class="skill-label"><span>Machine Learning</span><span>85%</span></div><div class="bar-track"><div class="bar-fill" data-target="85"></div></div></div>
         <div class="skill-row"><div class="skill-label"><span>LLMs / GenAI</span><span>78%</span></div><div class="bar-track"><div class="bar-fill" data-target="78"></div></div></div>
         <div class="skill-row"><div class="skill-label"><span>ArcGIS</span><span>75%</span></div><div class="bar-track"><div class="bar-fill" data-target="75"></div></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>AI &amp; Machine Learning</h4>
+        <div class="skill-tags"><span class="skill-tag">Neural Networks</span><span class="skill-tag">Reinforcement Learning</span><span class="skill-tag">Deep Learning</span><span class="skill-tag">Generative AI</span><span class="skill-tag">Neuro-symbolic AI</span><span class="skill-tag">Causal Inference</span><span class="skill-tag">LLM Fine-Tuning</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>Data Science</h4>
+        <div class="skill-tags"><span class="skill-tag">Feature Engineering</span><span class="skill-tag">Dimensionality Reduction</span><span class="skill-tag">Clustering</span><span class="skill-tag">Statistical Modeling</span><span class="skill-tag">Databricks</span><span class="skill-tag">Plotly Dash</span></div>
       </div>
       <div class="skill-card reveal">
         <h4>Tools</h4>
