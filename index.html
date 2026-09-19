@@ -47,6 +47,8 @@ section{padding:150px 0;position:relative;}
 
 /* ===== NAV ===== */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:22px 0;mix-blend-mode:difference;}
+nav{transition:background .3s ease,padding .3s ease,box-shadow .3s ease;}
+nav.scrolled{background:rgba(5,11,22,0.92);padding:14px 0;mix-blend-mode:normal;box-shadow:0 1px 0 rgba(255,255,255,0.07);}
 .nav-inner{max-width:var(--maxw);margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;}
 .nav-name{font-family:var(--font-head);font-weight:600;font-size:15px;letter-spacing:0.04em;}
 .nav-links{display:flex;gap:30px;list-style:none;}
@@ -265,9 +267,8 @@ body.has-custom-cursor, body.has-custom-cursor a, body.has-custom-cursor button{
 .bar-track{height:4px;background:rgba(255,255,255,0.08);border-radius:6px;overflow:hidden;}
 .bar-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--mint));width:0%;border-radius:6px;}
 
-.skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
-.skill-tag{padding:6px 13px;border-radius:100px;font-size:12px;font-weight:500;color:var(--mint);background:rgba(100,255,218,0.06);border:1px solid rgba(100,255,218,0.22);transition:background .25s ease,border-color .25s ease,transform .25s ease;}
-.skill-tag:hover{background:rgba(100,255,218,0.14);border-color:var(--mint);transform:translateY(-2px);}
+.skill-card.wide{grid-column:1/-1;}
+.skill-card.wide .skill-rows{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0 48px;}
 /* ===== CERTIFICATIONS ===== */
 .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
 .cert-card{background:var(--bg-panel);border:1px solid rgba(255,255,255,0.07);border-radius:12px;overflow:hidden;transition:transform .25s ease, border-color .25s ease;}
@@ -630,55 +631,64 @@ footer{padding:36px 0;text-align:center;color:var(--text-soft);font-size:12.5px;
     <div class="eyebrow reveal">Toolkit</div>
     <h2 class="section-title reveal">Skills</h2>
     <div class="skills-grid">
-      <div class="skill-card reveal">
-        <h4>Languages &amp; Query</h4>
-        <div class="skill-row"><div class="skill-label"><span>Python</span><span>90%</span></div><div class="bar-track"><div class="bar-fill" data-target="90"></div></div></div>
-        <div class="skill-row"><div class="skill-label"><span>SQL</span><span>92%</span></div><div class="bar-track"><div class="bar-fill" data-target="92"></div></div></div>
-      </div>
-      <div class="skill-card reveal">
-        <h4>Data Engineering</h4>
-        <div class="skill-row"><div class="skill-label"><span>ETL / ELT</span><span>90%</span></div><div class="bar-track"><div class="bar-fill" data-target="90"></div></div></div>
-        <div class="skill-row"><div class="skill-label"><span>Airflow</span><span>88%</span></div><div class="bar-track"><div class="bar-fill" data-target="88"></div></div></div>
-        <div class="skill-row"><div class="skill-label"><span>Spark</span><span>80%</span></div><div class="bar-track"><div class="bar-fill" data-target="80"></div></div></div>
-        <div class="skill-row"><div class="skill-label"><span>dbt</span><span>70%</span></div><div class="bar-track"><div class="bar-fill" data-target="70"></div></div></div>
-      </div>
-      <div class="skill-card reveal">
-        <h4>BI &amp; Visualization</h4>
-        <div class="skill-row"><div class="skill-label"><span>Power BI</span><span>88%</span></div><div class="bar-track"><div class="bar-fill" data-target="88"></div></div></div>
-        <div class="skill-row"><div class="skill-label"><span>Tableau</span><span>85%</span></div><div class="bar-track"><div class="bar-fill" data-target="85"></div></div></div>
-        <div class="skill-row"><div class="skill-label"><span>Looker Studio</span><span>82%</span></div><div class="bar-track"><div class="bar-fill" data-target="82"></div></div></div>
-      </div>
-      <div class="skill-card reveal">
-        <h4>Cloud &amp; Platforms</h4>
-        <div class="skill-row"><div class="skill-label"><span>Azure</span><span>80%</span></div><div class="bar-track"><div class="bar-fill" data-target="80"></div></div></div>
-        <div class="skill-row"><div class="skill-label"><span>Microsoft Fabric</span><span>75%</span></div><div class="bar-track"><div class="bar-fill" data-target="75"></div></div></div>
-        <div class="skill-row"><div class="skill-label"><span>GCP</span><span>72%</span></div><div class="bar-track"><div class="bar-fill" data-target="72"></div></div></div>
-        <div class="skill-row"><div class="skill-label"><span>AWS</span><span>70%</span></div><div class="bar-track"><div class="bar-fill" data-target="70"></div></div></div>
-      </div>
-      <div class="skill-card reveal">
-        <h4>ML &amp; Analytics</h4>
-        <div class="skill-row"><div class="skill-label"><span>Statistical Analysis</span><span>88%</span></div><div class="bar-track"><div class="bar-fill" data-target="88"></div></div></div>
-        <div class="skill-row"><div class="skill-label"><span>Machine Learning</span><span>85%</span></div><div class="bar-track"><div class="bar-fill" data-target="85"></div></div></div>
-        <div class="skill-row"><div class="skill-label"><span>LLMs / GenAI</span><span>78%</span></div><div class="bar-track"><div class="bar-fill" data-target="78"></div></div></div>
-        <div class="skill-row"><div class="skill-label"><span>ArcGIS</span><span>75%</span></div><div class="bar-track"><div class="bar-fill" data-target="75"></div></div></div>
-      </div>
-      <div class="skill-card reveal">
-        <h4>AI &amp; Machine Learning</h4>
-        <div class="skill-tags"><span class="skill-tag">Neural Networks</span><span class="skill-tag">Reinforcement Learning</span><span class="skill-tag">Deep Learning</span><span class="skill-tag">Generative AI</span><span class="skill-tag">Neuro-symbolic AI</span><span class="skill-tag">Causal Inference</span><span class="skill-tag">LLM Fine-Tuning</span></div>
-      </div>
-      <div class="skill-card reveal">
-        <h4>Data Science</h4>
-        <div class="skill-tags"><span class="skill-tag">Feature Engineering</span><span class="skill-tag">Dimensionality Reduction</span><span class="skill-tag">Clustering</span><span class="skill-tag">Statistical Modeling</span><span class="skill-tag">Databricks</span><span class="skill-tag">Plotly Dash</span></div>
-      </div>
-      <div class="skill-card reveal">
-        <h4>Tools</h4>
-        <div class="skill-row"><div class="skill-label"><span>Git</span><span>82%</span></div><div class="bar-track"><div class="bar-fill" data-target="82"></div></div></div>
-        <div class="skill-row"><div class="skill-label"><span>n8n</span><span>78%</span></div><div class="bar-track"><div class="bar-fill" data-target="78"></div></div></div>
-        <div class="skill-row"><div class="skill-label"><span>Docker</span><span>72%</span></div><div class="bar-track"><div class="bar-fill" data-target="72"></div></div></div>
+        <div class="skill-card reveal">
+          <h4>Languages &amp; Query</h4>
+          <div class="skill-row"><div class="skill-label"><span>Python</span><span>90%</span></div><div class="bar-track"><div class="bar-fill" data-target="90"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>SQL</span><span>92%</span></div><div class="bar-track"><div class="bar-fill" data-target="92"></div></div></div>
+        </div>
+        <div class="skill-card reveal">
+          <h4>Data Engineering</h4>
+          <div class="skill-row"><div class="skill-label"><span>ETL / ELT</span><span>90%</span></div><div class="bar-track"><div class="bar-fill" data-target="90"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Airflow</span><span>88%</span></div><div class="bar-track"><div class="bar-fill" data-target="88"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Spark</span><span>80%</span></div><div class="bar-track"><div class="bar-fill" data-target="80"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>dbt</span><span>70%</span></div><div class="bar-track"><div class="bar-fill" data-target="70"></div></div></div>
+        </div>
+        <div class="skill-card reveal">
+          <h4>BI &amp; Visualization</h4>
+          <div class="skill-row"><div class="skill-label"><span>Power BI</span><span>88%</span></div><div class="bar-track"><div class="bar-fill" data-target="88"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Tableau</span><span>85%</span></div><div class="bar-track"><div class="bar-fill" data-target="85"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Looker Studio</span><span>82%</span></div><div class="bar-track"><div class="bar-fill" data-target="82"></div></div></div>
+        </div>
+        <div class="skill-card reveal">
+          <h4>Cloud &amp; Platforms</h4>
+          <div class="skill-row"><div class="skill-label"><span>Azure</span><span>80%</span></div><div class="bar-track"><div class="bar-fill" data-target="80"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Microsoft Fabric</span><span>75%</span></div><div class="bar-track"><div class="bar-fill" data-target="75"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>GCP</span><span>72%</span></div><div class="bar-track"><div class="bar-fill" data-target="72"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>AWS</span><span>70%</span></div><div class="bar-track"><div class="bar-fill" data-target="70"></div></div></div>
+        </div>
+        <div class="skill-card reveal">
+          <h4>Data Science</h4>
+          <div class="skill-row"><div class="skill-label"><span>Feature Engineering</span><span>90%</span></div><div class="bar-track"><div class="bar-fill" data-target="90"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Statistical Modeling</span><span>89%</span></div><div class="bar-track"><div class="bar-fill" data-target="89"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Clustering</span><span>86%</span></div><div class="bar-track"><div class="bar-fill" data-target="86"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Dimensionality Reduction</span><span>82%</span></div><div class="bar-track"><div class="bar-fill" data-target="82"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Databricks</span><span>81%</span></div><div class="bar-track"><div class="bar-fill" data-target="81"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Plotly Dash</span><span>84%</span></div><div class="bar-track"><div class="bar-fill" data-target="84"></div></div></div>
+        </div>
+        <div class="skill-card reveal">
+          <h4>Tools</h4>
+          <div class="skill-row"><div class="skill-label"><span>Git</span><span>82%</span></div><div class="bar-track"><div class="bar-fill" data-target="82"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>n8n</span><span>78%</span></div><div class="bar-track"><div class="bar-fill" data-target="78"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Docker</span><span>72%</span></div><div class="bar-track"><div class="bar-fill" data-target="72"></div></div></div>
+        </div>
+        <div class="skill-card reveal wide">
+          <h4>AI, ML &amp; Analytics</h4>
+          <div class="skill-rows">
+          <div class="skill-row"><div class="skill-label"><span>Statistical Analysis</span><span>88%</span></div><div class="bar-track"><div class="bar-fill" data-target="88"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Machine Learning</span><span>85%</span></div><div class="bar-track"><div class="bar-fill" data-target="85"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Deep Learning</span><span>84%</span></div><div class="bar-track"><div class="bar-fill" data-target="84"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Neural Networks</span><span>83%</span></div><div class="bar-track"><div class="bar-fill" data-target="83"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Causal Inference</span><span>82%</span></div><div class="bar-track"><div class="bar-fill" data-target="82"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>LLM Fine-Tuning</span><span>81%</span></div><div class="bar-track"><div class="bar-fill" data-target="81"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Reinforcement Learning</span><span>80%</span></div><div class="bar-track"><div class="bar-fill" data-target="80"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Neuro-symbolic AI</span><span>80%</span></div><div class="bar-track"><div class="bar-fill" data-target="80"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>LLMs / GenAI</span><span>78%</span></div><div class="bar-track"><div class="bar-fill" data-target="78"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>ArcGIS</span><span>75%</span></div><div class="bar-track"><div class="bar-fill" data-target="75"></div></div></div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 <!-- CERTIFICATIONS -->
 <section id="certifications">
@@ -904,6 +914,8 @@ document.getElementById('contactForm').addEventListener('submit', function(e){
   const body = `From: ${name} (${email})%0D%0A%0D%0A${encodeURIComponent(message)}`;
   window.location.href = `mailto:bhawish.developer@gmail.com?subject=Portfolio Contact&body=${body}`;
 });
+// nav background once the page is scrolled
+window.addEventListener('scroll', () => { document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
 </script>
 </body>
 </html>
